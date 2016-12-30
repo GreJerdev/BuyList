@@ -1,21 +1,23 @@
 {
-  "name": "client",
-  "description": "Client for BuyList",
-  "main": "",
+  "name": "buy-list",
+  "description": "BuyList client",
+  "main": "index.js",
   "authors": [
-    "angularist <gendash@gmail.com>", "GreJerdev <gregory.je@gmail.com>"
+    "G&G"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "keywords": [
-    "shopping",
-    "list"
+    "node_js",
+    "angular2",
+    "money-managment"
   ],
   "homepage": "https://github.com/GreJerdev/BuyList",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "client/bower_components",
+    "client/src/bower_components",
     "test",
     "tests"
   ],
