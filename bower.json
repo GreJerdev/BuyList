@@ -1,0 +1,25 @@
+{
+  "name": "client",
+  "description": "Client for BuyList",
+  "main": "",
+  "authors": [
+    "angularist <gendash@gmail.com>", "GreJerdev <gregory.je@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "shopping",
+    "list"
+  ],
+  "homepage": "https://github.com/GreJerdev/BuyList",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
