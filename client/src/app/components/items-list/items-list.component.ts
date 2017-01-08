@@ -52,19 +52,13 @@ export class ItemsListComponent implements OnInit {
         }
     }
 
-    itemInputKeyDown(event:any, itemText: any) {
-        if (event.which === ItemsListComponent.ENTER_KEY) {
-            this.addItem(event, itemText);
-        }
-    }
-
     getItems() {
         this._itemsService.getItems().subscribe(items => {
             this.items = items;
         });        
     }
 
-    addItem(event: any, itemText: any) {
+    addItem(itemText: any) {
 
         if (itemText.value.trim() === '') {
             return;

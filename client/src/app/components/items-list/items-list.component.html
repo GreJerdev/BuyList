@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form>
+            <form (submit)="addItem(itemText)">
                 <div class="add-item-form text-center">
                     <h1>Add item</h1>
                     <div class="form-group">
-                        <input class="form-control input-lg" placeholder="Add item..." autofocus #itemText (keydown)="itemInputKeyDown($event, itemText)"/>
+                        <input class="form-control input-lg" placeholder="Add item..." autofocus #itemText/>
                         <br/>
-                        <button class="btn btn-primary btn-block" (click)="addItem($event, itemText)">Create</button>
+                        <button class="btn btn-primary btn-block" (click)="addItem(itemText)">Create</button>
                     </div>
                 </div>
 
