@@ -1,23 +1,31 @@
-<div class="add-item-form text-center">
-    <h1>Add item</h1>
-    <div class="form-group">
-        <input class="form-control input-lg" placeholder="Add item..." autofocus #itemText/>
-        <br/>
-        <button class="btn btn-primary btn-block" (click)="addItem($event, itemText)">Create</button>
-    </div>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="add-item-form text-center">
+                <h1>Add item</h1>
+                <div class="form-group">
+                    <input class="form-control input-lg" placeholder="Add item..." autofocus #itemText/>
+                    <br/>
+                    <button class="btn btn-primary btn-block" (click)="addItem($event, itemText)">Create</button>
+                </div>
+            </div>
 
-<div *ngFor="let item of items" class="item-list">
-    <div class="col-md-1">
-        <input type="checkbox" name="do" [checked]="item.isCompleted" (click)="toggleCompletion(item)"/>
-    </div>
-    <div class="col-md-7" [style.text-decoration]="item.isCompleted ? 'line-through' : 'none'">
-        <span [class.hidden]="item.isEditMode">{{item.text}}</span>
-        <input [class.hidden]="!item.isEditMode" [value]="item.text" (keypress)="handleItemEdit($event, item)"/>
-        <input type="button" class="btn btn-warning" value="Cancel" [class.hidden]="!item.isEditMode" (click)="setEditMode(item, false)"/> 
-    </div>
-    <div class="col-md-4 btns">
-        <input type="button" class="btn btn-default pull-right" value="Edit" (click)="setEditMode(item, true)" [class.disabled]="item.isCompleted"/>
-        <input type="button" class="btn btn-danger pull-right" value="Delete" (click)="deleteItem(item)"/>
+            <div *ngFor="let item of items" class="item-list">
+                <div class="col-md-1">
+                    <input type="checkbox" name="do" [checked]="item.isCompleted" (click)="toggleCompletion(item)" />
+                </div>
+                <div class="col-md-7" [style.text-decoration]="item.isCompleted ? 'line-through' : 'none'">
+                    <span [class.hidden]="item.isEditMode">{{item.text}}</span>
+                    <input [class.hidden]="!item.isEditMode" [value]="item.text" (keypress)="handleItemEdit($event, item)" />
+                    <input type="button" class="btn btn-warning" value="Cancel" [class.hidden]="!item.isEditMode" (click)="setEditMode(item, false)"
+                    />
+                </div>
+                <div class="col-md-4 btns">
+                    <input type="button" class="btn btn-default pull-right" value="Edit" (click)="setEditMode(item, true)" [class.disabled]="item.isCompleted"
+                    />
+                    <input type="button" class="btn btn-danger pull-right" value="Delete" (click)="deleteItem(item)" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>

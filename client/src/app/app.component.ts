@@ -17,18 +17,13 @@ import { Component } from '@angular/core';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+            <li><a routerLink="/buylist">My BuyList</a></li>
+            <li><a routerLink="/about">About</a></li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <bl-items-list></bl-items-list>
-        </div>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   `,
   styles: []
 })
