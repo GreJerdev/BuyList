@@ -46,6 +46,15 @@ export class ItemsListComponent implements OnInit {
                 this.setEditMode(item, false);
             });
             */
+            // TODO: Remove this later
+            item.text = newText; 
+            this.setEditMode(item, false);
+        }
+    }
+
+    itemInputKeyDown(event:any, itemText: any) {
+        if (event.which === ItemsListComponent.ENTER_KEY) {
+            this.addItem(event, itemText);
         }
     }
 
@@ -57,8 +66,11 @@ export class ItemsListComponent implements OnInit {
 
     addItem(event: any, itemText: any) {
 
-        let newItem: Item = new Item(itemText.value, false);
+        if (itemText.value.trim() === '') {
+            return;
+        }
 
+        let newItem: Item = new Item(itemText.value, false);
         let result = this._itemsService.saveItem(newItem);
         // TODO: Uncomment this later
         /*
@@ -67,6 +79,9 @@ export class ItemsListComponent implements OnInit {
             itemText.value = '';
         });
         */
+        // TODO: Remove this later
+        this.items.push(newItem);
+        itemText.value = '';
     }
 
     toggleCompletion(item: Item) {
@@ -77,16 +92,20 @@ export class ItemsListComponent implements OnInit {
             item.isCompleted = !item.isCompleted;
         })
         */
+        // TODO: Remove this later
+        item.isCompleted = !item.isCompleted;
     }
 
     deleteItem(item: Item) { // TODO: bring back the getId() usage once done figuring out
-        let result = this._itemsService.deleteItem(item._id);
         /*
         TODO: Uncomment this later
+        let result = this._itemsService.deleteItem(item._id);
         result.subscribe(x => {
             this.items = this.items.filter(checkedItem => checkedItem._id !== item._id);
         })
         */
+        // TODO: Remove this later
+        this.items = this.items.filter(checkedItem => checkedItem.text !== item.text);
     }
 }
 
