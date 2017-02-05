@@ -7,7 +7,6 @@ var itemSchema = new Schema({
     name:String,
     quantity: Number,
     isDone: Boolean,
-    about: Boolean   
 });
 
 var Items = mongoose.model('Items', itemSchema);

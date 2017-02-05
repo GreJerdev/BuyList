@@ -6,22 +6,22 @@ module.exports = function(app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     
-    app.get('/api/item/:uname', function(req, res) {
+    app.get('/api/item/:listid', function(req, res) {
         
-        Items.find({ username: req.params.uname }, function(err, todos) {
+        Items.find({ listId: req.params.listId }, function(err, items) {
             if (err) throw err;
             
-            res.send(todos);
+            res.send(items);
         });
         
     });
     
     app.get('/api/item/:id', function(req, res) {
        
-       Items.findById({ _id: req.params.id }, function(err, todo) {
+       Items.findById({ _id: req.params.id }, function(err, item) {
            if (err) throw err;
            
-           res.send(todo);
+           res.send(item);
        });
         
     });
@@ -29,7 +29,10 @@ module.exports = function(app) {
     app.post('/api/item', function(req, res) {
         
         if (req.body.id) {
-            Items.findByIdAndUpdate(req.body.id, { todo: req.body.todo, isDone: req.body.isDone, hasAttachment: req.body.hasAttachment }, function(err, todo) {
+            Items.findByIdAndUpdate(req.body.id, {  listId: req.body.listId,
+                name: req.body.name,
+                quantity: req.body.quantity,
+                isDone: req.body.isDone }, function(err, item) {
                 if (err) throw err;
                 
                 res.send('Success');
@@ -39,10 +42,10 @@ module.exports = function(app) {
         else {
            
            var newItem = Item({
-               username: 'test',
-               todo: req.body.todo,
-               isDone: req.body.isDone,
-               hasAttachment: req.body.hasAttachment
+               istId: req.body.listId,
+               name: req.body.name,
+               quantity: req.body.quantity,
+               isDone: req.body.isDone 
            });
            newItem.save(function(err) {
                if (err) throw err;
