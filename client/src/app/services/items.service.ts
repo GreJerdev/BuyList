@@ -7,15 +7,15 @@ export class ItemsService {
 
   // TODO: Get actual data
   mockedList = [
-    {id: "001",
+    {_id: "001",
      text: "Milk",
      isCompleted: false
     },
-    {id: "002",
+    {_id: "002",
      text: "Bread",
      isCompleted: false
     },
-    {id: "001",
+    {_id: "003",
      text: "Potatoes",
      isCompleted: true
     },

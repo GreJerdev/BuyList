@@ -39,7 +39,7 @@ export class ItemsListComponent implements OnInit {
             if (!newText) {
                 return;
             }
-            let updatedItem = new Item(newText, item.isCompleted, item._id);
+            let updatedItem = new Item(newText, item.quantity, item.isCompleted, item._id);
             /* TODO: Uncomment this later
             this._itemsService.updateItem(updatedItem).subscribe(data => {
                 item.text = newText; 
@@ -64,7 +64,8 @@ export class ItemsListComponent implements OnInit {
             return;
         }
 
-        let newItem: Item = new Item(itemText.value, false);
+        // TODO: handle quantity later
+        let newItem: Item = new Item(itemText.value);
         let result = this._itemsService.saveItem(newItem);
         // TODO: Uncomment this later
         /*
@@ -79,7 +80,7 @@ export class ItemsListComponent implements OnInit {
     }
 
     toggleCompletion(item: Item) {
-        let updatedItem = new Item(item.text, !item.isCompleted, item._id);
+        let updatedItem = new Item(item.text, item.quantity, !item.isCompleted, item._id);
 
         /* TODO: Uncomment this later
         this._itemsService.updateItem(updatedItem).subscribe(data => {

@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a routerLink="/buylist">My BuyList</a></li>
+            <li><a routerLink="/shoppinglist">MobX Shopping List</a></li>
             <li><a routerLink="/about">About</a></li>
           </ul>
         </div>
