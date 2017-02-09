@@ -1,4 +1,4 @@
-var Todos = require('../models/todoModel');
+var Lists = require('../models/listModel');
 var bodyParser = require('body-parser');
 
 module.exports = function(app) {
@@ -6,30 +6,30 @@ module.exports = function(app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     
-    app.get('/api/todos/:uname', function(req, res) {
+    app.get('/api/list/:id', function(req, res) {
         
-        Todos.find({ username: req.params.uname }, function(err, todos) {
+        Lists.find({ groupId: req.params.id }, function(err, list) {
             if (err) throw err;
             
-            res.send(todos);
+            res.send(list);
         });
         
     });
     
-    app.get('/api/todo/:id', function(req, res) {
+    app.get('/api/list/:id', function(req, res) {
        
-       Todos.findById({ _id: req.params.id }, function(err, todo) {
+       Lists.findById({ _id: req.params.id }, function(err, list) {
            if (err) throw err;
            
-           res.send(todo);
+           res.send(list);
        });
         
     });
     
-    app.post('/api/todo', function(req, res) {
+    app.post('/api/list', function(req, res) {
         
         if (req.body.id) {
-            Todos.findByIdAndUpdate(req.body.id, { todo: req.body.todo, isDone: req.body.isDone, hasAttachment: req.body.hasAttachment }, function(err, todo) {
+            Lists.findByIdAndUpdate(req.body.id, { groupId: req.body.groupId, createDate: req.body.createDate, about: req.body.about }, function(err, list) {
                 if (err) throw err;
                 
                 res.send('Success');
@@ -38,13 +38,13 @@ module.exports = function(app) {
         
         else {
            
-           var newTodo = Todos({
-               username: 'test',
-               todo: req.body.todo,
-               isDone: req.body.isDone,
-               hasAttachment: req.body.hasAttachment
+           var newList = Lists({
+              
+               groupId: req.body.groupId, 
+               createDate: req.body.createDate,
+               about: req.body.about
            });
-           newTodo.save(function(err) {
+           newList.save(function(err) {
                if (err) throw err;
                res.send('Success');
            });
@@ -53,9 +53,9 @@ module.exports = function(app) {
         
     });
     
-    app.delete('/api/todo', function(req, res) {
+    app.delete('/api/list', function(req, res) {
         
-        Todos.findByIdAndRemove(req.body.id, function(err) {
+        Lists.findByIdAndRemove(req.body.id, function(err) {
             if (err) throw err;
             res.send('Success');
         })
