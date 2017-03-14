@@ -1,6 +1,7 @@
 var Groups = require('../models/groupModel');
 var bodyParser = require('body-parser');
 
+
 module.exports = function(app) {
     
     app.use(bodyParser.json());
@@ -8,7 +9,10 @@ module.exports = function(app) {
     
     app.get('/api/groups/:uname', function(req, res) {
         
-        Groups.find({ username: req.params.uname }, function(err, groups) {
+     /*  Groups.find({ username: req.params.uname }, function(err, groups)*/
+       Groups.find({ }, function(err, groups)
+     
+      {
             if (err) throw err;
             
             res.send(groups);
@@ -26,10 +30,12 @@ module.exports = function(app) {
         
     });
     
+   
     app.post('/api/group', function(req, res) {
         
-        if (req.body.id) {
-            Groups.findByIdAndUpdate(req.body.id, { groupid: req.body.groupid, name: req.body.name }, function(err, group) {
+        console.log(req.body);
+        if (req.body._id) {
+            Groups.findByIdAndUpdate(req.body._id, { groupid: req.body._id, name: req.body.name }, function(err, group) {
                 if (err) throw err;
                 
                 res.send('Success');
@@ -37,10 +43,11 @@ module.exports = function(app) {
         }
         
         else {
-           
-           var newGroup = Groups({
-              name: req.boby.name
+           console.log('adding new group :'+ req.body.name);
+           var newGroup = new Groups({
+              name: req.body.name
            });
+           console.log(newGroup);
            newGroup.save(function(err) {
                if (err) throw err;
                res.send('Success');
