@@ -7,38 +7,40 @@ import { HttpModule } from '@angular/http';
 import { Ng2MobxModule } from 'ng2-mobx';
 
 import { AppComponent } from './app.component';
-import { ItemsListComponent } from './components/items-list/items-list.component';
 import { AboutComponent } from './components/about/about.component';
-import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
-import { ShoppingListData } from './stores/lists-data.store';
+import { BuyGroupComponent } from './components/buy-group/buy-group.component';
+import { BuyListComponent } from './components/buy-list/buy-list.component';
+import { BuyPreviewListComponent } from './components/buy-preview-list/buy-preview-list.component';
+import { BuyListDataStore } from './stores/buy-list-data.store';
 
-const appRoutes = 
+const appRoutes =
   [
     {
       path: '',
-      redirectTo: '/buylist',
+      redirectTo: '/mobxbuygroup',
       pathMatch: 'full'
     },
     {
-      path: 'buylist',
-      component: ItemsListComponent
-    },
-    {
-      path: 'shoppinglist',
-      component: ShoppingListComponent
+      path: 'mobxbuygroup',
+      component: BuyGroupComponent
     },
     {
       path: 'about',
       component: AboutComponent
+    },
+    {
+      path: 'buylistdetails/:id',
+      component: BuyListComponent
     }
   ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemsListComponent,
     AboutComponent,
-    ShoppingListComponent
+    BuyGroupComponent,
+    BuyListComponent,
+    BuyPreviewListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ const appRoutes =
     RouterModule.forRoot(appRoutes),
     Ng2MobxModule
   ],
-  providers: [ShoppingListData],
+  providers: [BuyListDataStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

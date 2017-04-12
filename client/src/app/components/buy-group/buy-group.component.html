@@ -1,0 +1,8 @@
+<div class="container" *mobxAutorun>
+  <div id="accordion" class="panel-group" role="tablist">
+    <div bl-buy-preview-list *ngFor="let list of store.group.lists; let i = index;" [list]="store.group.lists[i]">
+  </div>    
+    <!--<div *ngFor="let list of store.group.lists; let i = index;">
+      <div bl-buy-preview-list [list]="store.group.lists[i]"></div>
+    </div>-->
+</div>

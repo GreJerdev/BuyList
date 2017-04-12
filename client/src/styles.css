@@ -5,3 +5,7 @@
 .buylist {
     background-color: yellow;
 }
+
+.float-right {
+  float: right;
+}
