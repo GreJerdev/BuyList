@@ -9,10 +9,20 @@ import { buyListDataStore, BuyListDataStore } from '../../stores/buy-list-data.s
 })
 export class BuyGroupComponent implements OnInit {
 
+  protected enteringNewList: boolean = false;
+
   constructor(private store: BuyListDataStore) { }
 
   ngOnInit() {
-    console.log(this.store.group.lists);
+    // console.log(this.store.group.lists);
   }
 
+  addNewList(listNameInput: any) {
+    let newListName = listNameInput.value.trim();
+    if (newListName !== '') {
+      this.store.createNewList(newListName);
+    }
+    listNameInput.value = '';
+    this.enteringNewList = false;
+  }
 }

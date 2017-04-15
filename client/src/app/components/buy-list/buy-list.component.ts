@@ -27,14 +27,14 @@ export class BuyListComponent implements OnInit {
     });
   }
 
-  addItem(itemText: any) {
+  addItem(itemNameInput: any) {
 
-    if (itemText.value.trim() === '') {
+    if (itemNameInput.value.trim() === '') {
       return;
     }
 
     // TODO: handle quantity later
-    this.list.addItem(itemText.value);
+    this.list.addItem(itemNameInput.value);
     // TODO: Implement this later with an observable, approximately like below
     /*
      result.subscribe(x => {
@@ -42,7 +42,7 @@ export class BuyListComponent implements OnInit {
      itemText.value = '';
      });
      */
-    itemText.value = '';
+    itemNameInput.value = '';
   }
 
   deleteItem(item: Item) {

@@ -1,8 +1,23 @@
+<div class="row" *ngIf="!enteringNewList">
+  <div class="btn btn-primary col-md-1 col-md-offset-3" (click)="enteringNewList = true">New list...</div>
+</div>
+<form (submit)="addNewList(listName)">
+  <div class="row form-group" *ngIf="enteringNewList">
+    <div class="col-md-2 col-md-offset-4">
+      <input type="text" class="form-control" autofocus #listName placdholder="Enter new list name"/>
+    </div>
+    <div class="col-md-1">
+      <button class="form-control btn btn-primary col-md-1" (click)="addNewList(listName)">Create</button>
+    </div>
+    <div class="col-md-1">
+      <button class="form-control btn btn-danger col-md-1" (click)="enteringNewList = false">Cancel</button>
+    </div>
+  </div>
+</form>
+
 <div class="container" *mobxAutorun>
-  <div id="accordion" class="panel-group" role="tablist">
+  <div class="panel-group">
     <div bl-buy-preview-list *ngFor="let list of store.group.lists; let i = index;" [list]="store.group.lists[i]">
-  </div>    
-    <!--<div *ngFor="let list of store.group.lists; let i = index;">
-      <div bl-buy-preview-list [list]="store.group.lists[i]"></div>
-    </div>-->
+    </div>
+  </div>
 </div>

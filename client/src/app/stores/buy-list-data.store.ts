@@ -117,9 +117,9 @@ export class BuyListDataStore {
     console.log('BuyListDataStore initialized')
   }
 
-  @action createNewList(name: string): List {
+  @action createNewList(listName: string): List {
     let newList: List = new List();
-    newList.name = name;
+    newList.name = listName;
     newList.createDate = Date.now().toString(); // TODO: Treat this as date eventually
     newList.groupId = this.group._id;
     newList.items = [];
