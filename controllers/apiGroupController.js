@@ -8,7 +8,7 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded({ extended: true }));
     
     app.get('/api/groups/:uname', function(req, res) {
-        
+       
      /*  Groups.find({ username: req.params.uname }, function(err, groups)*/
        Groups.find({ }, function(err, groups)
      
@@ -45,7 +45,9 @@ module.exports = function(app) {
         else {
            console.log('adding new group :'+ req.body.name);
            var newGroup = new Groups({
-              name: req.body.name
+              name: req.body.name,
+              managerId: req.body.managerId,
+              isDeleted:false,
            });
            console.log(newGroup);
            newGroup.save(function(err) {

@@ -1,5 +1,6 @@
 var Lists = require('../models/listModel');
 var bodyParser = require('body-parser');
+var listBll = require('../BLL/listBLL')
 
 module.exports = function(app) {
     
@@ -28,8 +29,30 @@ module.exports = function(app) {
     
     app.post('/api/list', function(req, res) {
         
+        var list = {
+              
+               groupId: req.body.groupId, 
+               createDate: req.body.createDate,
+               about: req.body.about}
+               ;
+        if(req.body._id)
+        {
+            list._id = req.body._id;
+            console.log('list has a id '+ list._id);
+        }
+
+        listBll.saveList('fdshflk', list, function(err, newList) {
+                if (err) throw err;
+                
+                res.send('Success');
+            });
+    
+/*
         if (req.body.id) {
-            Lists.findByIdAndUpdate(req.body.id, { groupId: req.body.groupId, createDate: req.body.createDate, about: req.body.about }, function(err, list) {
+            Lists.findByIdAndUpdate(req.body.id, { 
+                groupId: req.body.groupId, 
+                createDate: req.body.createDate, 
+                about: req.body.about }, function(err, list) {
                 if (err) throw err;
                 
                 res.send('Success');
@@ -50,7 +73,7 @@ module.exports = function(app) {
            });
             
         }
-        
+      */ 
     });
     
     app.delete('/api/list', function(req, res) {

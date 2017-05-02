@@ -9,6 +9,7 @@ var apiListController = require('./controllers/apiListController');
 
 
 var port = process.env.PORT || 3000;
+app.disable('x-power-by')
 
 app.use('/assets', express.static(__dirname + '/public'));
 
@@ -19,5 +20,10 @@ mongoose.connect(config.getDbConnectionString());
 apiGroupController(app);
 apiItemController(app);
 apiListController(app);
+
+app.use(function (err, req, res, next) {
+    console.log('Error : ' + err.message);
+    next();
+});
 
 app.listen(port);
