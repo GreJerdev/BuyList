@@ -1,6 +1,6 @@
 var Lists = require('../models/listModel');
 var bodyParser = require('body-parser');
-var listBll = require('../BLL/listBLL')
+var listBll = require('../BLL/listBLL');
 
 module.exports = function(app) {
     

@@ -47,8 +47,11 @@ module.exports =  {
             }
             callback(error, result);
         });
-    }
-    
+    },
+   getListsByGroup: function getListsByGroup(user, groupId, callback)
+   {
+         Lists.find({ groupId: req.params.id }, callback);
+   }
 
 
 }

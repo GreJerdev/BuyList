@@ -36,7 +36,7 @@ module.exports = function (app) {
         if (req.body.id) {
             item._id = req.body.id
         }
-        else{
+        else {
             item._id = undefined;
         }
 
@@ -80,10 +80,14 @@ module.exports = function (app) {
 
     app.delete('/api/item', function (req, res) {
 
-        Items.findByIdAndRemove(req.body.id, function (err) {
+        var listId = req.body.listid;
+        var itemId = req.body.itemid;
+
+        itemBll.deleteItem(listId, itemId, function (err) {
             if (err) throw err;
             res.send('Success');
-        })
+        });
+
 
     });
 
