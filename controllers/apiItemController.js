@@ -1,14 +1,15 @@
 var Items = require('../models/itemModel');
 var bodyParser = require('body-parser');
 var itemBll = require('../BLL/itemBLL')
+var listBll = require('../BLL/listBLL');
 module.exports = function (app) {
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.get('/api/item/:listid', function (req, res) {
+    app.get('/api/listitems/:listid', function (req, res) {
 
-        Items.find({ listId: req.params.listId }, function (err, items) {
+        listBll.getItems(req.params.listid, function (err, items) {
             if (err) throw err;
 
             res.send(items);
@@ -36,7 +37,7 @@ module.exports = function (app) {
         if (req.body.id) {
             item._id = req.body.id
         }
-        else {
+        else { 
             item._id = undefined;
         }
 

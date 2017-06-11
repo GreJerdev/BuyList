@@ -1,21 +1,39 @@
 var Groups = require('../BLL/groupBLL');
 var Lists = require('../models/listModel');
-module.exports =  {
+module.exports = {
 
-    
-   saveList: function saveList(user, list, callback) {
+    getItems: function (listId, callback) {
+        console.log('try to get list items '+ listId);
+        Lists.find({ "_id": listId }, function (err, list) {
+            if (err) {
+                console.log(err);
+                haveError = true;
+                error = err;
+                callback(err, list);
+            }
+            if (list.length > 0) {
+                console.log(list.length);
+                console.log(list);
+                callback(err, list[0].items);
+            }
+        });
+
+
+
+    },
+    saveList: function saveList(user, list, callback) {
+        console.log('try to save a new list');
         Groups.GetGroup(list.groupId, function (err, group) {
-           console.log('list group was found id is '+group._id);
             haveError = false;
             error = null;
             result = null;
-            console.log('list id '+list._id);
+            console.log('list id ' + list._id);
             if (list._id) {
 
-                Lists.findByIdAndUpdate(list.id, {
-                    groupId: list.groupId,
-                    createDate: list.createDate,
-                    about: list.about
+                Lists.findByIdAndUpdate(list._id, {
+                    name: list.name,
+                    description: list.description,
+                    archiveDate: new Date().getTime() / 1000,
                 }, function (err, list) {
 
                     if (err) {
@@ -28,12 +46,16 @@ module.exports =  {
             }
 
             else {
-                
+
                 var newList = Lists({
 
                     groupId: list.groupId,
-                    createDate: list.createDate,
-                    about: list.about
+                    cloneFromListId: list.cloneFromListId,
+                    createDate: new Date().getTime() / 1000,
+                    name: list.name,
+                    description: list.description,
+                    archiveDate: new Date().getTime() / 1000,
+                    items: []
                 });
                 newList.save(function (err) {
                     if (err) {
@@ -48,10 +70,9 @@ module.exports =  {
             callback(error, result);
         });
     },
-   getListsByGroup: function getListsByGroup(user, groupId, callback)
-   {
-         Lists.find({ groupId: req.params.id }, callback);
-   }
+    getListsByGroup: function getListsByGroup(user, groupId, callback) {
+        Lists.find({ groupId: req.params.id }, callback);
+    }
 
 
 }
