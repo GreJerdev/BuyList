@@ -16,7 +16,7 @@ var apiListController = require('./controllers/apiListController');
 var port = process.env.PORT || 3000;
 app.disable('x-power-by')
 
-app.use('/assets', express.static(__dirname + '/public'));
+app.use('/client', express.static(__dirname + '/client-ui'));
 app.set('view',path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
